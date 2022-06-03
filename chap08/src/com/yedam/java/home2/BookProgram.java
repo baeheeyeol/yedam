@@ -4,26 +4,30 @@ import java.util.Scanner;
 
 public class BookProgram implements Program {
 	private Scanner sc = new Scanner(System.in);
+	private int isbnRange = 9999;
+	private int isbnNum = 1000;
 
-	//메뉴출력
+	// 메뉴출력
 	@Override
 	public void menuPrint() {
 		System.out.println("==========***************=========*&&^=========");
 		System.out.println("1.정보 입력 | 2.조회 | 3.검색 | 4.분석 | 5.종료");
 		System.out.println("====*****=======*****=======*****=======");
 	}
-	
-	//값 넣기
+
+	// 값 넣기
 	@Override
 	public void inputInfo(Access access) {
 
 		Book info = inputAll();
 		access.insert(info);
 	}
-	//전체값 넣기
-	private Book inputAll() {
-		int isbn = (int) (Math.random() * 9999) + 1;
 
+	// 전체값 넣기
+	private Book inputAll() {
+		// int isbn = (int) (Math.random() * isbnRange) + 1;
+
+		int isbn = isbnNum++;
 		System.out.println("제목>");
 		String name = sc.nextLine();
 
@@ -32,7 +36,8 @@ public class BookProgram implements Program {
 
 		return new Book(isbn, name, price);
 	}
-	//전체 출력
+
+	// 전체 출력
 	@Override
 	public void printAllInfo(Access access) {
 		int num = selectSortingMethod();
@@ -46,8 +51,8 @@ public class BookProgram implements Program {
 			book.showInfo();
 		}
 	}
-	
-	//한개 가져오기
+
+	// 한개 가져오기
 	@Override
 	public void printInfo(Access access) {
 		int isbn = inputIsbn();
@@ -117,7 +122,7 @@ public class BookProgram implements Program {
 	}
 
 	private int selectSortingdirection() {
-		System.out.println("1.정순 2.역순");
+		System.out.println("1.높은순 2.작은순");
 		int num = Integer.parseInt(sc.nextLine());
 		return num;
 	}

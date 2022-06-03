@@ -1,7 +1,7 @@
 package com.yedam.java.home2;
 
 public class BookRepo implements Access {
-
+//dao
 	private static BookRepo instance = new BookRepo();
 	private Book[] dataList;
 	private int listIndex;

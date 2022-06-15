@@ -14,6 +14,7 @@ public class ReadExample {
 		}
 		is.close();
 		System.out.println("------------------------------");
+
 		is = new FileInputStream("D:/dev/temp/test2.db");
 		byte[] buffer = new byte[100];
 		while (true) {
@@ -26,16 +27,16 @@ public class ReadExample {
 			System.out.println();
 		}
 		is.close();
-		System.out.println("------------------------------");
 		
+		System.out.println("------------------------------");
+
 		is = new FileInputStream("D:/dev/temp/test3.db");
-		int readByteNum = is.read(buffer);
+		int readByteNum = is.read(buffer,3,5);
 		for (int i = 0; i < (3 + readByteNum); i++) {
 			System.out.println(buffer[i]);
 		}
 		is.close();
 		System.out.println("------------------------------");
-		is = new FileInputStream("D:/dev/temp/test3.db");
-		is.close();
+
 	}
 }

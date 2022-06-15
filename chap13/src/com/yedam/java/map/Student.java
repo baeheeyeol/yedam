@@ -19,9 +19,10 @@ public class Student {
 	public boolean equals(Object obj) {
 		if (obj instanceof Student) {
 			Student s = (Student) obj;
-			return (sno == s.sno) && (name.equals(s.name));
+			return (name.equals(s.name)&& sno == s.sno);
 		}
 		return false;
 	}
+
 
 }

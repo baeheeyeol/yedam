@@ -151,6 +151,7 @@ public class EmpDAO {
 		try {
 			connect();
 			String sql = "INSERT INTO employees VALUE (?,?,?,?,?,?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, emp.getEmployeeId());
 			pstmt.setString(2, emp.getFirstName());
 			pstmt.setString(3, emp.getLastName());
@@ -181,8 +182,10 @@ public class EmpDAO {
 		try {
 			connect();
 			String sql = "UPDATE employees SET salary =? WHERE employee_id = ?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(2, emp.getEmployeeId());
 			pstmt.setDouble(1, emp.getSalary());
+
 			int result = pstmt.executeUpdate();
 			if (result > 0) {
 				System.out.println("수정이 완료되었습니다.");

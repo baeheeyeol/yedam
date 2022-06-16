@@ -8,6 +8,8 @@ public class MainTest {
 //		for (Employee emp : list) {
 //			System.out.println(emp);
 //		}
-		EmpDAO.getInstance().selectOne(150);
+	//	new EmpSystem();
+		new DepSystem();
+
 	}
 }

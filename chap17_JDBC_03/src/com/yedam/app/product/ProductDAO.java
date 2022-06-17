@@ -27,7 +27,7 @@ public class ProductDAO extends DAO {
 	public void insert(Product product) {
 		try {
 			connect();
-			String sql = "INSERT INTO product VALUES (produst_seq.nextval,?,?)";
+			String sql = "INSERT INTO product VALUES (product_seq.nextval,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, product.getProductName());
 			pstmt.setInt(2, product.getProductPrice());
@@ -89,8 +89,9 @@ public class ProductDAO extends DAO {
 
 	// 단건조회 - 제품번호
 	public Product selectOne(int productId) {
-		Product pro = new Product();
+		Product pro = null;
 		try {
+			pro = new Product();
 			connect();
 			String sql = "SELECT * FROM product WHERE product_id =" + productId;
 			stmt = conn.createStatement();
@@ -110,12 +111,18 @@ public class ProductDAO extends DAO {
 
 	// 단건조회 - 제품이름
 	public Product selectOne(String productName) {
-		Product pro = new Product();
+		Product pro = null;
 		try {
 			connect();
-			String sql = "SELECT * FROM product WHERE product_id =" + productName;
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
+			pro = new Product();
+//			String sql = "SELECT * FROM product WHERE product_id = '" + productName + "'";
+//			stmt = conn.createStatement();
+//			rs = stmt.executeQuery(sql);
+
+			String sql = "SELECT *FROM product WHERE product_name = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, productName);
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				pro.setProductId(rs.getInt("product_id"));
 				pro.setProductName(rs.getNString("product_name"));

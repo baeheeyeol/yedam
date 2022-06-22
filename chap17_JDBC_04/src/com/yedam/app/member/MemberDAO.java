@@ -49,4 +49,9 @@ public class MemberDAO extends DAO {
 		}
 		return loginInfo;
 	}
+	
+	public void insert() 
+	{
+		
+	}
 }

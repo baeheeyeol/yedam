@@ -30,8 +30,9 @@ public class DAO {
 	public void connect() {
 		try {
 			Class.forName(jdbc_driver);
-//			conn = DriverManager.getConnection(oracle_url, connectedId, connectedPwd);
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr","hr");
+//		conn = DriverManager.getConnection(oracle_url, connectedId, connectedPwd);
+//		conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr","hr");
+			conn = DriverManager.getConnection(oracle_url, "hr","hr");
 		} catch (ClassNotFoundException e) {
 			System.out.println("jdbc driver 로딩 실패");
 		} catch (SQLException e) {

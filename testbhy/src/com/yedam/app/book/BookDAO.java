@@ -139,9 +139,10 @@ public class BookDAO extends DAO {
 		List<Book> list = new ArrayList<Book>();
 		try {
 			connect();
-			String sql = "SELECT *FROM books WHERE book_CONTENT like '%자바%'";
+			String sql = "SELECT *FROM books WHERE book_CONTENT like '%" + write + "%'";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
+
 			while (rs.next()) {
 				Book book = new Book();
 				book.setContent(rs.getString("book_content"));

@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-
 public class DAO {
 	// Oracle DB 정보
 	private String jdbc_driver;
@@ -29,14 +28,16 @@ public class DAO {
 	}
 
 	public void connect() {
+		dbConfig();
 		try {
+			// 1.JDBE Driver 로딩
 			Class.forName(jdbc_driver);
+			// 2.DB 서버 접속
 			conn = DriverManager.getConnection(oracle_url, connectedId, connectedPwd);
-//			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr","hr");
 		} catch (ClassNotFoundException e) {
-			System.out.println("jdbc driver 로딩 실패");
+			System.out.println("JDBC Driver 로딩 실패");
 		} catch (SQLException e) {
-			System.out.println("DB 연결실패");
+			System.out.println("DB 접속 실패");
 		}
 	}
 
@@ -46,16 +47,47 @@ public class DAO {
 		try {
 			String filePath = ClassLoader.getSystemClassLoader().getResource(resource).getPath();
 			properties.load(new FileInputStream(filePath));
-			
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 		}
+//		jdbc_driver = properties.getProperty("driver");
+//		oracle_url = properties.getProperty("url");
+//		connectedId = properties.getProperty("id");
+//		connectedPwd = properties.getProperty("password");
 		jdbc_driver = properties.getProperty("driver");
 		oracle_url = properties.getProperty("url");
 		connectedId = properties.getProperty("id");
 		connectedPwd = properties.getProperty("password");
 	}
+
+//	public void connect() {
+//		try {
+//			Class.forName(jdbc_driver);
+////			conn = DriverManager.getConnection(oracle_url, connectedId, connectedPwd);
+//			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr","hr");
+//		} catch (ClassNotFoundException e) {
+//			System.out.println("jdbc driver 로딩 실패");
+//		} catch (SQLException e) {
+//			System.out.println("DB 연결실패");
+//		}
+//	}
+//
+//	private void dbConfig() {
+//		String resource = "config/db.properties";
+//		Properties properties = new Properties();
+//		try {
+//			String filePath = ClassLoader.getSystemClassLoader().getResource(resource).getPath();
+//			properties.load(new FileInputStream(filePath));
+//			
+//		} catch (IOException e) {
+//			
+//			e.printStackTrace();
+//		}
+//		jdbc_driver = properties.getProperty("driver");
+//		oracle_url = properties.getProperty("url");
+//		connectedId = properties.getProperty("id");
+//		connectedPwd = properties.getProperty("password");
+//	}
 
 	// DB 접속을 해제하는 메소드
 	public void disconnect() {

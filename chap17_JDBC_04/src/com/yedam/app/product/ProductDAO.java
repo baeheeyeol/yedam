@@ -53,7 +53,7 @@ public class ProductDAO extends DAO {
 //			pstmt.setInt(1, product.getProductId());
 //			int result = pstmt.executeUpdate();
 
-			String sql = "UPDATE product SET product_stock =" + product.getProductStock() + "WHERE product_id ="
+			String sql = "UPDATE products SET product_stock =" + product.getProductStock() + "WHERE product_id ="
 					+ product.getProductId();
 			stmt = conn.createStatement();
 			int result = stmt.executeUpdate(sql);
@@ -78,7 +78,7 @@ public class ProductDAO extends DAO {
 			pstmt.setString(1, product.getProductName());
 			pstmt.setInt(2, product.getProductPrice());
 			pstmt.setInt(3, product.getProductId());
-			int result = stmt.executeUpdate(sql);
+			int result = pstmt.executeUpdate();
 			if (result > 0) {
 				System.out.println("정상적으로 수정되었습니다.");
 			} else {
@@ -95,7 +95,7 @@ public class ProductDAO extends DAO {
 	public void delete(int productId) {
 		try {
 			connect();
-			String sql = "DELETE FROM product WHERE product_id =" + productId;
+			String sql = "DELETE FROM products WHERE product_id =" + productId;
 			stmt = conn.createStatement();
 			int result = stmt.executeUpdate(sql);
 			if (result > 0) {

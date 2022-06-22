@@ -62,6 +62,10 @@ public class EmpDAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+//		jdbc_driver = properties.getProperty("driver");
+//		oracle_url = properties.getProperty("url");
+//		connectedId = properties.getProperty("id");
+//		connectedPwd = properties.getProperty("password");
 		jdbc_driver = properties.getProperty("driver");
 		oracle_url = properties.getProperty("url");
 		connectedId = properties.getProperty("id");
